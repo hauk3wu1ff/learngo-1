@@ -18,5 +18,8 @@ package main
 // ---------------------------------------------------------
 
 func main() {
-	// ?
+	/*
+		Error for following line: "Hello," (untyped string constant) is not usedcompilerUnusedExpr
+		"Hello,"
+	*/
 }
