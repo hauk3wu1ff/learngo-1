@@ -8,6 +8,8 @@
 
 package main
 
+import "fmt"
+
 // ---------------------------------------------------------
 // EXERCISE: Sum the Numbers
 //
@@ -19,4 +21,14 @@ package main
 // ---------------------------------------------------------
 
 func main() {
+	var (
+		sum   int
+		lower = 1
+		upper = 10
+	)
+
+	for i := lower; i <= upper; i++ {
+		sum = sum + i
+	}
+	fmt.Printf("The sum of %d..%d is %d\n", lower, upper, sum)
 }
