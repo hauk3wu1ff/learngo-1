@@ -108,10 +108,10 @@ func main() {
 			 Please note regarding rand.Intn: It returns a pseudo-random number in the
 			 interval [0,n). The internal border excludes n.
 			*/
-			fmt.Printf("🎉  %s\n", winnerMsg[rand.Intn(len(winnerMsg)+1)])
+			fmt.Printf("🎉  %s\n", winnerMsg[rand.Intn(len(winnerMsg))])
 		}
 		return
 	}
 	// Choose a loser message at random.
-	fmt.Printf("☠️  %s... Try again?\n", loserMsg[rand.Intn(len(loserMsg)+1)])
+	fmt.Printf("☠️  %s... Try again?\n", loserMsg[rand.Intn(len(loserMsg))])
 }
