@@ -29,6 +29,8 @@ func main() {
 	}
 
 	const N = float64(len(students) * len(students[0]))
+	fmt.Printf("len(students)=%d, len(students[0]=%d\n", len(students), len(students[0]))
+	fmt.Printf("len(students) * len(students[0])=%g\n", N)
 	fmt.Printf("Avg Grade: %g\n", sum/N)
 
 	// ------------------------------------

@@ -12,6 +12,7 @@ import (
 	"fmt"
 	"math/rand"
 	"os"
+	"strings"
 	"time"
 )
 
@@ -60,20 +61,35 @@ import (
 
 func main() {
 	args := os.Args[1:]
-	if len(args) != 1 {
-		fmt.Println("[your name]")
+	if len(args) != 2 {
+		fmt.Println("[your name] [positive|negative]")
 		return
 	}
 
+	const (
+		positive string = "positive"
+		negative string = "negative"
+	)
+
 	name := args[0]
-
-	moods := [...]string{
-		"happy 😀", "good 👍", "awesome 😎",
-		"sad 😞", "bad 👎", "terrible 😩",
+	moodType := strings.ToLower(args[1])
+	moods := [...][3]string{
+		{"happy 😀", "good 👍", "awesome 😎"},
+		{"sad 😞", "bad 👎", "terrible 😩"},
 	}
-
+	var mi int //mood type index
+	if moodType == positive {
+		mi = 0
+	}
+	if moodType == negative {
+		mi = 1
+	}
+	if moodType != positive && moodType != negative {
+		fmt.Println("Mood type must be positive or negative!")
+		os.Exit(1)
+	}
 	rand.Seed(time.Now().UnixNano())
-	n := rand.Intn(len(moods))
+	n := rand.Intn(len(moods[0]))
 
-	fmt.Printf("%s feels %s\n", name, moods[n])
+	fmt.Printf("%s feels %s\n", name, moods[mi][n])
 }
