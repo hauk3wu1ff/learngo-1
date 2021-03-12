@@ -11,6 +11,8 @@ package main
 import (
 	"fmt"
 	"os"
+	"path/filepath"
+	"strings"
 )
 
 // ---------------------------------------------------------
@@ -84,27 +86,29 @@ import (
 //    #2 : "/Users/inanc/go/bin"
 // ---------------------------------------------------------
 
-//const corpus = "lazy cat jumps again and again and again"
+// const corpus = "lazy cat jumps again and again and again"
 
 func main() {
-	fmt.Printf("PATH is set to %s.\n", os.Getenv("PATH"))
+
+	path := os.Getenv("PATH")
+	pathList := filepath.SplitList(path)
+	// fmt.Printf("PATH is set to: %s.\n", path)
+	fmt.Printf("pathList %v\n", pathList)
+
 	// words := strings.Fields(corpus)
-	// query := os.Args[1:]
+	query := os.Args[1:]
 
-	// // after the inner loop breaks
-	// // this parent loop will look for the next queried word
-	// for _, q := range query {
+	// after the inner loop breaks
+	// this parent loop will look for the next queried word
+	for _, q := range query {
 
-	// 	// "break" will terminate this loop
-	// 	for i, w := range words {
-	// 		if q == w {
-	// 			fmt.Printf("#%-2d: %q\n", i+1, w)
+		fmt.Printf("Looping through pathList looking for %s:\n", q)
+		for i, p := range pathList {
+			// fmt.Println(i+1, p)
+			if strings.Contains(strings.ToLower(p), strings.ToLower(q)) {
+				fmt.Printf("#%-2d: %q\n", i+1, p)
+			}
+		}
 
-	// 			// find the first word then break
-	// 			// the nested loop
-	// 			break
-	// 		}
-	// 	}
-
-	// }
+	}
 }

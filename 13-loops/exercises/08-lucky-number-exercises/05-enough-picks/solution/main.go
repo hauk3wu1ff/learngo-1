@@ -58,6 +58,8 @@ func main() {
 	for turn := 0; turn < maxTurns; turn++ {
 		n := rand.Intn(min) + 1
 
+		fmt.Printf("%d ", n)
+
 		if n == guess {
 			fmt.Println("🎉  YOU WIN!")
 			return
