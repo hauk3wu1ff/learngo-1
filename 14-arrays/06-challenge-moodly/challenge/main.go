@@ -8,6 +8,13 @@
 
 package main
 
+import (
+	"fmt"
+	"math/rand"
+	"os"
+	"time"
+)
+
 // ---------------------------------------------------------
 // EXERCISE: Moodly
 //
@@ -43,7 +50,29 @@ package main
 //
 //   go run main.go Socrates
 //     Socrates feels terrible 😩
+
 // ---------------------------------------------------------
 
+const (
+	usage = `Usage: <Your Name>`
+)
+
 func main() {
+	if len(os.Args) < 2 {
+		fmt.Printf("%s\n", usage)
+		os.Exit(1)
+	}
+	user := os.Args[1]
+
+	emojis := [6]string{
+		"👍",
+		"👎",
+		"😞",
+		"😀",
+		"😎",
+		"😩",
+	}
+	rand.Seed(time.Now().UnixNano())
+	r := rand.Intn(6)
+	fmt.Printf("%s feels %s, i.e. emotion %d\n", user, emojis[r], r)
 }
