@@ -106,19 +106,27 @@ func main() {
 		"   ",
 	}
 
+	colonOff := placeholder{
+		"   ",
+		"   ",
+		"   ",
+		"   ",
+		"   ",
+	}
+
 	digits := [...]placeholder{
 		zero, one, two, three, four, five, six, seven, eight, nine,
 	}
 
 	screen.Clear()
-
 	for {
-		screen.MoveTopLeft()
+		hour, min, sec := time.Now().Clock()
 
-		now := time.Now()
-		hour, min, sec := now.Hour(), now.Minute(), now.Second()
+		fmt.Printf("hour: %d, min: %d, sec: %d\n", hour, min, sec)
 
+		// [8][5]string
 		clock := [...]placeholder{
+			// extract the digits: 17 becomes, 1 and 7 respectively
 			digits[hour/10], digits[hour%10],
 			colon,
 			digits[min/10], digits[min%10],
@@ -126,13 +134,19 @@ func main() {
 			digits[sec/10], digits[sec%10],
 		}
 
+		// blink, turn off colons every even second
+		if sec%2 == 0 {
+			clock[2], clock[5] = colonOff, colonOff
+		}
+
+		screen.MoveTopLeft()
+
 		for line := range clock[0] {
 			for digit := range clock {
 				fmt.Print(clock[digit][line], "  ")
 			}
 			fmt.Println()
 		}
-
 		time.Sleep(time.Second)
 	}
 }
