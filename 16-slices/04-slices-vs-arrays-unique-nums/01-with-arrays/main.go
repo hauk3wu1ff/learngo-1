@@ -17,7 +17,10 @@ import (
 func main() {
 	rand.Seed(time.Now().UnixNano())
 
-	const max = 5
+	const (
+		max     = 5
+		maxRand = 100
+	)
 	var uniques [max]int
 
 	// It's harder to make a program dynamic using arrays
@@ -26,7 +29,7 @@ func main() {
 
 loop:
 	for found := 0; found < max; {
-		n := rand.Intn(max) + 1
+		n := rand.Intn(maxRand) + 1
 		fmt.Print(n, " ")
 
 		for _, u := range uniques {
