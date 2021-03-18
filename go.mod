@@ -7,8 +7,9 @@ require (
 	github.com/guineveresaenger/golang-rainbow v0.0.0-20171201190047-7b6c54e09b61
 	github.com/inancgumus/prettyslice v0.0.0-20190305220808-d802ba58098f
 	github.com/inancgumus/screen v0.0.0-20190314163918-06e984b86ed3
-	github.com/mattn/go-runewidth v0.0.9
-	golang.org/x/crypto v0.0.0-20210314154223-e6e6c4f2bb5b // indirect
-	golang.org/x/sys v0.0.0-20210314195730-07df6a141424 // indirect
-	golang.org/x/term v0.0.0-20210220032956-6a3ed077a48d // indirect
+	github.com/mattn/go-runewidth v0.0.10
+	github.com/rivo/uniseg v0.2.0 // indirect
+	golang.org/x/crypto v0.0.0-20210317152858-513c2a44f670 // indirect
+	golang.org/x/sys v0.0.0-20210317225723-c4fcb01b228e // indirect
+	golang.org/x/term v0.0.0-20210317153231-de623e64d2a6 // indirect
 )
