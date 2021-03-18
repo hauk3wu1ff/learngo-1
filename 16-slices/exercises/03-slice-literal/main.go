@@ -42,6 +42,12 @@ import "fmt"
 // ---------------------------------------------------------
 
 func main() {
+
+	const (
+		sameMsg      = "The length of the distances and the data slices are the same."
+		differentMsg = "The length of the distances and the data slices are NOT the same."
+	)
+
 	var (
 		names     []string  // The names of your friends
 		distances []int     // The distances
@@ -50,15 +56,20 @@ func main() {
 		alives    []bool    // Up/Down status of web servers
 	)
 
-	names = []string{}
-	distances = []int{}
-	data = []byte{}
-	ratios = []float64{}
-	alives = []bool{}
+	names = []string{"Gizmo", "Ralf", "Christoph"}
+	distances = []int{10, 20, 30, 40, 50}
+	data = []byte{0, 8, 16, 32, 64}
+	ratios = []float64{1.35, 0.92}
+	alives = []bool{true, false, true, true}
 
 	fmt.Printf("names    : %T %d %t\n", names, len(names), names == nil)
 	fmt.Printf("distances: %T %d %t\n", distances, len(distances), distances == nil)
 	fmt.Printf("data     : %T %d %t\n", data, len(data), data == nil)
 	fmt.Printf("ratios   : %T %d %t\n", ratios, len(ratios), ratios == nil)
 	fmt.Printf("alives   : %T %d %t\n", alives, len(alives), alives == nil)
+	if len(distances) == len(data) {
+		fmt.Println(sameMsg)
+	} else {
+		fmt.Println(differentMsg)
+	}
 }
