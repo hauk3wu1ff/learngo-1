@@ -8,6 +8,12 @@
 
 package main
 
+import (
+	"fmt"
+	"strconv"
+	"strings"
+)
+
 // ---------------------------------------------------------
 // EXERCISE: Housing Prices
 //
@@ -76,4 +82,64 @@ Istanbul,500,10,5,1000000`
 
 		separator = ","
 	)
+
+	var (
+		locations []string
+		size      []int
+		beds      []int
+		baths     []int
+		prices    []int
+	)
+
+	hs := strings.Split(header, separator)
+	ds := strings.Split(data, "\n")
+
+	for r, rv := range ds {
+		for c, fv := range strings.Split(rv, ",") {
+			switch c {
+			case 0:
+				locations = append(locations, fv)
+			case 1:
+				i, err := strconv.Atoi(fv)
+				if err != nil {
+					fmt.Printf("Row/Column %d/%d should be int\n", r, c)
+					return
+				}
+				size = append(size, i)
+			case 2:
+				i, err := strconv.Atoi(fv)
+				if err != nil {
+					fmt.Printf("Row/Column %d/%d should be int\n", r, c)
+					return
+				}
+				beds = append(beds, i)
+			case 3:
+				i, err := strconv.Atoi(fv)
+				if err != nil {
+					fmt.Printf("Row/Column %d/%d should be int\n", r, c)
+					return
+				}
+				baths = append(baths, i)
+			case 4:
+				i, err := strconv.Atoi(fv)
+				if err != nil {
+					fmt.Printf("Row/Column %d/%d should be int\n", r, c)
+					return
+				}
+				prices = append(prices, i)
+			}
+		}
+	}
+	fmt.Printf("%-15s%-15s%-15s%-15s%-15s\n", hs[0], hs[1], hs[2], hs[3], hs[4])
+	for i := 1; i <= 75; i++ {
+		fmt.Printf("%s", "=")
+	}
+	fmt.Println()
+	for i := 0; i < len(ds); i++ {
+		fmt.Printf("%-15s", locations[i])
+		fmt.Printf("%-15d", size[i])
+		fmt.Printf("%-15d", beds[i])
+		fmt.Printf("%-15d", baths[i])
+		fmt.Printf("%-15d\n", prices[i])
+	}
 }

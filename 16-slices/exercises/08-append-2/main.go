@@ -8,6 +8,11 @@
 
 package main
 
+import (
+	"fmt"
+	"time"
+)
+
 // ---------------------------------------------------------
 // EXERCISE: Append #2
 //
@@ -46,4 +51,24 @@ package main
 // ---------------------------------------------------------
 
 func main() {
+	var (
+		pizza       []string
+		graduations []int
+		departures  []time.Time
+		lights      []bool
+	)
+
+	pizza = []string{"Hawaii", "Calzone", "Gino's Special"}
+	graduations = []int{1989, 2021, 2023}
+	departures = []time.Time{
+		time.Now(),
+		time.Date(2009, time.November, 10, 23, 0, 0, 0, time.Local),
+		time.Date(2021, time.November, 10, 23, 0, 0, 0, time.Local),
+	}
+	lights = []bool{true, true, true}
+
+	fmt.Printf("pizza:       %v\n", pizza)
+	fmt.Printf("graduations: %v\n", graduations)
+	fmt.Printf("departures:  %v\n", departures)
+	fmt.Printf("lights:      %v\n", lights)
 }
