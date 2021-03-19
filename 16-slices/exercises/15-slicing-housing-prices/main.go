@@ -124,13 +124,14 @@ package main
 // ---------------------------------------------------------
 
 func main() {
-	const (
-		data = `Location,Size,Beds,Baths,Price
-New York,100,2,1,100000
-New York,150,3,2,200000
-Paris,200,4,3,400000
-Istanbul,500,10,5,1000000`
+	// 	const (
+	// 		data = `Location,Size,Beds,Baths,Price
+	// New York,100,2,1,100000
+	// New York,150,3,2,200000
+	// Paris,200,4,3,400000
+	// Istanbul,500,10,5,1000000`
 
-		separator = ","
-	)
+	// 		separator = ","
+	// 	)
+
 }

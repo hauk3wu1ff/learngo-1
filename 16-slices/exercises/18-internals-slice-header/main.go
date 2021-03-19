@@ -86,6 +86,8 @@ func main() {
 	// 1. allocate an array with 10 million int elements
 	//    the array's size will be equal to ~80MB
 	//    hint: use the `size` constant above.
+	var tenMillion [size]int
+	passArray(tenMillion)
 
 	// 2. print the memory usage (use the report func).
 

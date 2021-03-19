@@ -41,7 +41,7 @@ func main() {
 	//
 	// Ensure that nums slice never changes even though
 	// the mine slice changes.
-	mine := nums
+	mine := []int{56, 89, 15, 25, 30, 50}
 	// ----------------------------------------
 
 	// DON'T TOUCH THE FOLLOWING CODE
