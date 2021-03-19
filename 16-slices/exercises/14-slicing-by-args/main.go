@@ -8,6 +8,12 @@
 
 package main
 
+import (
+	"fmt"
+	"os"
+	"strconv"
+)
+
 // ---------------------------------------------------------
 // EXERCISE: Slicing by arguments
 //
@@ -113,5 +119,53 @@ package main
 
 func main() {
 	// uncomment the slice below
-	// ships := []string{"Normandy", "Verrikan", "Nexus", "Warsaw"}
+	ships := []string{"Normandy", "Verrikan", "Nexus", "Warsaw"}
+	const (
+		usageMsg  = "Provide only the [starting] and [stopping] positions"
+		numberMsg = "All arguments must be numbers"
+	)
+
+	var (
+		min int
+		max int = len(ships)
+	)
+
+	fmt.Printf("%q\n", ships)
+
+	var args []int
+	for _, v := range os.Args[1:] {
+		num, err := strconv.Atoi(v)
+		if err != nil {
+			fmt.Println(usageMsg)
+			fmt.Println(numberMsg)
+			return
+		}
+		args = append(args, num)
+	}
+
+	argError := false
+	switch {
+	case len(args) == 0:
+		argError = true
+	case len(args) > 2:
+		argError = true
+	case args[0] < min:
+		argError = true
+	case (len(args) == 2) && (args[1] > max):
+		argError = true
+	case (len(args) == 2) && (args[0] > args[1]):
+		argError = true
+	}
+	if argError {
+		fmt.Println(usageMsg)
+		return
+	}
+
+	if len(args) == 1 {
+		fmt.Println(ships[args[0]:])
+	}
+
+	if len(args) == 2 {
+		fmt.Println(ships[args[0]:args[1]])
+	}
 }

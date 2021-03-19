@@ -40,7 +40,7 @@ func main() {
 			to = l
 		}
 
-		// fmt.Printf("%d:%d\n", from, to)
+		fmt.Printf("%d:%d\n", from, to)
 
 		currentPage := items[from:to]
 
