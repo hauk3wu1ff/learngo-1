@@ -9,6 +9,8 @@
 package main
 
 import (
+	"fmt"
+
 	s "github.com/inancgumus/prettyslice"
 )
 
@@ -30,8 +32,8 @@ func main() {
 	//     capacity of 5, and print it.
 	//
 	//
-	// ...
-	// s.Show("1st step", names)
+	names := make([]string, 5)
+	s.Show("1st step", names)
 
 	// ########################################################
 	//
@@ -44,8 +46,8 @@ func main() {
 	//     Observe how the slice and its backing array change.
 	//
 	//
-	// ...
-	// s.Show("2nd step", names)
+	names = append(names, "einstein", "tesla", "aristo")
+	s.Show("2nd step", names)
 
 	// ########################################################
 	//
@@ -61,8 +63,9 @@ func main() {
 	//
 	//     So: Overwrite and print the names slice.
 	//
-	// ...
-	// s.Show("3rd step", names)
+	names = make([]string, 0, 5)
+	names = append(names, "einstein", "tesla", "aristo")
+	s.Show("3rd step", names)
 
 	// ########################################################
 	//
@@ -76,11 +79,12 @@ func main() {
 	//
 	//
 	// Array (uncomment):
-	// moreNames := [...]string{"plato", "khayyam", "ptolemy"}
-	//
-	// ...
-	//
-	// s.Show("4th step", names)
+	moreNames := [...]string{"plato", "khayyam", "ptolemy"}
+
+	n := copy(names[3:5], moreNames[:2])
+	names = names[:cap(names)]
+	fmt.Printf("Copied %d elements\n", n)
+	s.Show("4th step", names)
 
 	// ########################################################
 	//

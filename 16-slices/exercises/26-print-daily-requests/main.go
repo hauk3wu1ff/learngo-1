@@ -67,21 +67,29 @@ func main() {
 	// There are 3 request totals per day (8-hourly)
 	const N = 3
 
-	// DAILY REQUESTS DATA (8-HOURLY TOTALS PER DAY)
 	reqs := []int{
-		500, 600, 250, // 1st day: 1350 requests
-		200, 400, 50, // 2nd day: 650 requests
-		900, 800, 600, // 3rd day: 2300 requests
-		750, 250, 100, // 4th day: 1100 requests
-		// grand total: 5400 requests
+		500, 600, 250,
+		200, 400, 50,
+		900, 800, 600,
+		750, 250, 100,
+		150, 654, 235,
+		320, 534, 765,
+		121, 876, 285,
+		543, 642,
 	}
+	// DAILY REQUESTS DATA (8-HOURLY TOTALS PER DAY)
+	// reqs := []int{
+	// 	500, 600, 250, // 1st day: 1350 requests
+	// 	200, 400, 50, // 2nd day: 650 requests
+	// 	900, 800, 600, // 3rd day: 2300 requests
+	// 	750, 250, 100, // 4th day: 1100 requests
+	// 	// grand total: 5400 requests
+	// }
 
 	// ================================================
 	// #1: Make a new slice with the exact size needed.
 
-	_ = reqs // remove this when you start
-
-	size := 0 // you need to find the size.
+	size := len(reqs) / N // you need to find the size.
 	daily := make([][]int, 0, size)
 
 	// ================================================
@@ -97,8 +105,20 @@ func main() {
 	//  [750, 250, 100]
 	// ]
 
-	_ = daily // remove this when you start
-
+	var d []int
+	for i := 0; i < len(reqs); i = i + N {
+		for j := 0; j < N; j++ {
+			fmt.Printf("i = %d, j = %d\n", i, j)
+			fmt.Printf("(i + j) %% N = %d\n", (i+j)%N)
+			if (i+j)%N == 0 {
+				d = make([]int, 0, 3)
+			}
+			if i+j < len(reqs) {
+				d = append(d, reqs[i+j])
+			}
+		}
+		daily = append(daily, d)
+	}
 	// ================================================
 	// #3: Print the results
 
@@ -108,7 +128,13 @@ func main() {
 
 	// Loop over the daily slice and its inner slices to find
 	// the daily totals and the grand total.
-	// ...
-
+	for i, d := range daily {
+		var total int
+		for _, r := range d {
+			fmt.Printf("%-10d%-10d\n", i, r)
+			total += r
+		}
+		fmt.Printf("%9s %d\n", "TOTAL:", total)
+	}
 	// ================================================
 }
