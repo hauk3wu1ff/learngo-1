@@ -8,6 +8,12 @@
 
 package main
 
+import (
+	"fmt"
+	"os"
+	"sort"
+)
+
 // ---------------------------------------------------------
 // EXERCISE: Sort and write items to a file
 //
@@ -48,4 +54,25 @@ package main
 // ---------------------------------------------------------
 
 func main() {
+	words := os.Args[1:]
+	if len(os.Args) < 3 {
+		fmt.Println("Send me some items and I will sort themi")
+		return
+	}
+
+	sort.Strings(words)
+	var sorted []byte
+	for _, w := range words {
+		sorted = append(sorted, w...)
+		sorted = append(sorted, '\n')
+	}
+
+	fmt.Println("Sorted:", words)
+
+	err := os.WriteFile("sorted.txt", sorted, 0644)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+
 }
