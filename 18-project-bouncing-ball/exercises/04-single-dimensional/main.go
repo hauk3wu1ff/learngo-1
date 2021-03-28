@@ -16,26 +16,6 @@ import (
 	"github.com/mattn/go-runewidth"
 )
 
-// ---------------------------------------------------------
-// EXERCISE: Single Dimensional
-//
-//  In this exercise you will understand why I use
-//  a multi-dimensional board slice instead of a
-//  single-dimensional one.
-//
-//  1. Remove this:
-//     board := make([][]bool, width)
-//
-//  2. Use this:
-//     board := make([]bool, width*height)
-//
-//  3. Adjust the rest of the operations in the code to work
-//     with this single-dimensional slice.
-//
-//     You'll see how hard it becomes to work with it.
-//
-// ---------------------------------------------------------
-
 func main() {
 	const (
 		cellEmpty = ' '
@@ -66,11 +46,8 @@ func main() {
 	width /= ballWidth
 	height-- // there is a 1 pixel border in my terminal
 
-	// create the board
-	board := make([][]bool, width)
-	for column := range board {
-		board[column] = make([]bool, height)
-	}
+	// create a single-dimensional board
+	board := make([]bool, width*height)
 
 	// drawing buffer length
 	// *2 for extra spaces
@@ -96,8 +73,12 @@ func main() {
 			vy *= -1
 		}
 
+		// calculate the new and the previous ball positions
+		pos := py*width + px
+		ppos := ppy*width + ppx
+
 		// remove the previous ball and put the new ball
-		board[px][py], board[ppx][ppy] = true, false
+		board[pos], board[ppos] = true, false
 
 		// save the previous positions
 		ppx, ppy = px, py
@@ -106,12 +87,14 @@ func main() {
 		buf = buf[:0]
 
 		// draw the board into the buffer
-		for y := range board[0] {
-			for x := range board {
+		for y := 0; y < height; y++ {
+			for x := 0; x < width; x++ {
 				cell = cellEmpty
-				if board[x][y] {
+
+				if board[y*width+x] {
 					cell = cellBall
 				}
+
 				buf = append(buf, cell, ' ')
 			}
 			buf = append(buf, '\n')

@@ -70,21 +70,13 @@ import (
 // ---------------------------------------------------------
 
 func main() {
-	const (
-		width  = 50
-		height = 10
 
+	const (
 		cellEmpty = ' '
 		cellBall  = '⚾'
 
 		maxFrames = 1200
 		speed     = time.Second / 20
-
-		// drawing buffer length
-		//
-		// *2 for extra spaces
-		// +1 for newlines
-		bufLen = (width*2 + 1) * height
 	)
 
 	var (
@@ -92,6 +84,15 @@ func main() {
 		vx, vy = 1, 1 // velocities
 
 		cell rune // current cell (for caching)
+
+		sw, sh = screen.Size()
+		width  = (sw / 2) - 1
+		height = sh
+		// drawing buffer length
+		//
+		// *2 for extra spaces
+		// +1 for newlines
+		bufLen = (width*2 + 1) * height
 	)
 
 	// create the board
@@ -147,6 +148,8 @@ func main() {
 		// print the buffer
 		screen.MoveTopLeft()
 		fmt.Print(string(buf))
+
+		fmt.Printf("screen width = %d, screen height = %d, 2 * width + 1 = %d, height = %d\n", sw, sh, 2*width+1, height)
 
 		// slow down the animation
 		time.Sleep(speed)

@@ -24,7 +24,8 @@ func main() {
 		cellBall  = '⚾'
 
 		maxFrames = 1200
-		speed     = time.Second / 20
+		//speed     = time.Second / 20
+		speed = time.Second * time.Duration(3)
 	)
 
 	var (
@@ -87,6 +88,8 @@ func main() {
 		// print the buffer
 		screen.MoveTopLeft()
 		fmt.Print(string(buf))
+
+		fmt.Printf("The ball position is [%d][%d]\n", px, py)
 
 		// slow down the animation
 		time.Sleep(speed)

@@ -51,8 +51,9 @@ func main() {
 	)
 
 	var (
-		px, py int    // ball position
-		vx, vy = 1, 1 // velocities
+		px, py   int    // ball position
+		opx, opy int    // previous ball position
+		vx, vy   = 5, 2 // velocities
 
 		cell rune // current cell (for caching)
 	)
@@ -86,8 +87,23 @@ func main() {
 
 	for i := 0; i < maxFrames; i++ {
 		// calculate the next ball position
+		opx, opy = px, py // previous ball position for next iteration
 		px += vx
 		py += vy
+
+		// ensure px, py are not 'index out of range'
+		if px <= 0 {
+			px = 0
+		}
+		if px >= width-1 {
+			px = width - 1
+		}
+		if py <= 0 {
+			py = 0
+		}
+		if py >= height-1 {
+			py = height - 1
+		}
 
 		// when the ball hits a border reverse its direction
 		if px <= 0 || px >= width-1 {
@@ -98,11 +114,12 @@ func main() {
 		}
 
 		// remove the previous ball
-		for y := range board[0] {
-			for x := range board {
-				board[x][y] = false
-			}
-		}
+		// for y := range board[0] {
+		// 	for x := range board {
+		// 		board[x][y] = false
+		// 	}
+		// }
+		board[opx][opy] = false
 
 		// put the new ball
 		board[px][py] = true

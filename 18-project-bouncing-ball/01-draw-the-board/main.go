@@ -39,6 +39,8 @@ func main() {
 	board[14][7] = true
 	board[16][7] = true
 
+	//oard[0][0] = true
+
 	// print the board directly to the console
 	for y := range board[0] {
 		for x := range board {

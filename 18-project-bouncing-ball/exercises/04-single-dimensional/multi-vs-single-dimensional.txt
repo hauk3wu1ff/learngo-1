@@ -1,0 +1,41 @@
+5 x 5 multi-dimensional board example:
+// create the board
+board := make([][]bool, width)
+for column := range board {
+    board[column] = make([]bool, height)
+}
+px = 0, py = 0
+vx = 1, vy = 1
+-----------
+|o x x x x| 0
+|x x x x x| 1
+|x x x x x| 2
+|x x x x x| 3
+|x x x x x| 4
+-----------
+
+px +=vx = 1
+py +=vy = 2:
+-----------
+|x x x x x| 0
+|x o x x x| 1
+|x x x x x| 2
+|x x x x x| 3
+|x x x x x| 4
+-----------
+
+27 5 x 5 single-dimensional board example:
+ 28 board := make([]bool, width*height)
+px = 0, py = 0
+vx = 1, vy = 1
+|                    1 1 1 1 1 1 1 1 1 1 2 2 2 2 2|
+|0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4|
+|o x x x x|x x x x x|x x x x x|x x x x x|x x x x x|
+
+px +=vx = 1
+py +=vy = 1:
+|                    1 1 1 1 1 1 1 1 1 1 2 2 2 2 2|
+|0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4|
+|x x x x x|x o x x x|x x x x x|x x x x x|x x x x x|
+
+                                                       
