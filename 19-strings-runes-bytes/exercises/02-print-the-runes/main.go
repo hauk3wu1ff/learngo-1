@@ -38,14 +38,15 @@ func main() {
 
 	var (
 		rbword []byte
-		dbword []byte
-		hbword []byte
+		// dbword []byte
+		// hbword []byte
 	)
 	for _, rune := range word {
 		// 1) print its runes one by one, as unicode-point, decimals, hexadecimals and binary.
 		fmt.Printf("%[1]U, %[1]d, %[1]x, %[1]b\n", rune)
 		// 2) Manually put the runes of the "console" word to a byte slice, one by one.
 		rbword = append(rbword, byte(rune))
+		// dbword = append(dbword, int32(rune))
 	}
 
 	// Print the byte slice.
