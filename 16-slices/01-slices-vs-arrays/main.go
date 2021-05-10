@@ -14,7 +14,7 @@ func main() {
 	{
 		// its length is part of its type
 		var nums [5]int
-		fmt.Printf("nums array: %#v\n", nums)
+		fmt.Printf("nums array content is: %#v\n", nums)
 	}
 
 	{
